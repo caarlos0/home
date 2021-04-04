@@ -1,0 +1,7 @@
+ingress:
+  enabled: true
+  path: /
+  hosts:
+    - grafana.home
+
+adminPassword: admin
