@@ -27,7 +27,7 @@ resource "kubernetes_stateful_set" "adguard" {
           app = "adguard"
         }
         annotations = {
-          "config/md5" = filemd5("${path.module}/files/adguard/config.yaml")
+          "config/md5" = filemd5("files/adguard/config.yaml")
         }
       }
 
@@ -215,6 +215,6 @@ resource "kubernetes_config_map" "adguard" {
   }
 
   data = {
-    "AdGuardHome.yaml" = "${file("${path.module}/files/adguard/config.yaml")}"
+    "AdGuardHome.yaml" = file("files/adguard/config.yaml")
   }
 }

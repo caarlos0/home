@@ -8,6 +8,6 @@ resource "helm_release" "grafana" {
   create_namespace = true
 
   values = [
-    "${file("values/grafana.yaml")}"
+    file("files/values/grafana.yaml"),
   ]
 }

@@ -21,6 +21,9 @@ resource "kubernetes_deployment" "github_releases_exporter" {
         labels = {
           app = "github_releases_exporter"
         }
+        annotations = {
+          "config/md5" = filemd5("files/github_releases_exporter/releases.yaml")
+        }
       }
 
       spec {
@@ -37,7 +40,6 @@ resource "kubernetes_deployment" "github_releases_exporter" {
           args = [
             "--config.file=/etc/github_releases_exporter/releases.yml",
             "--releases.max=10",
-            # "--github.token=$GITHUB_TOKEN",
             "--refresh.interval=30m",
           ]
 
@@ -120,7 +122,7 @@ resource "kubernetes_config_map" "github_releases_exporter" {
   }
 
   data = {
-    "releases.yml" = "${file("${path.module}/files/github_releases_exporter/releases.yaml")}"
+    "releases.yml" = file("files/github_releases_exporter/releases.yaml")
   }
 }
 

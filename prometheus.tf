@@ -8,6 +8,6 @@ resource "helm_release" "prometheus" {
   create_namespace = true
 
   values = [
-    "${file("values/prometheus.yaml")}"
+    file("files/values/prometheus.yaml"),
   ]
 }
