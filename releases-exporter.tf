@@ -28,7 +28,7 @@ resource "kubernetes_deployment" "github_releases_exporter" {
 
       spec {
         container {
-          image = "ghcr.io/caarlos0/github_releases_exporter:latest"
+          image = "ghcr.io/caarlos0/github_releases_exporter:v1.6.0"
           name  = "exporter"
 
           env_from {
