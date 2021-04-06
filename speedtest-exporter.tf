@@ -25,8 +25,10 @@ resource "kubernetes_deployment" "speedtest_exporter" {
 
       spec {
         container {
-          image = "ghcr.io/caarlos0/speedtest-exporter:v0.1.0"
+          image = "ghcr.io/caarlos0/speedtest-exporter:v0.3.1"
           name  = "exporter"
+
+          args = ["--debug"]
 
           port {
             container_port = 9876
