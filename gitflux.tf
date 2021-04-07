@@ -11,7 +11,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_repositories" {
     failed_jobs_history_limit     = 1
     schedule                      = "*/15 * * * *"
     starting_deadline_seconds     = 10
-    successful_jobs_history_limit = 10
+    successful_jobs_history_limit = 1
     job_template {
       metadata {}
       spec {
@@ -59,7 +59,7 @@ resource "kubernetes_cron_job" "gitflux_goreleaser_repositories" {
     failed_jobs_history_limit     = 1
     schedule                      = "*/15 * * * *"
     starting_deadline_seconds     = 10
-    successful_jobs_history_limit = 10
+    successful_jobs_history_limit = 1
     job_template {
       metadata {}
       spec {
@@ -108,7 +108,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_relationships" {
     failed_jobs_history_limit     = 1
     schedule                      = "*/30 * * * *"
     starting_deadline_seconds     = 10
-    successful_jobs_history_limit = 10
+    successful_jobs_history_limit = 1
     job_template {
       metadata {}
       spec {
@@ -156,7 +156,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_notifications" {
     failed_jobs_history_limit     = 1
     schedule                      = "*/5 * * * *"
     starting_deadline_seconds     = 10
-    successful_jobs_history_limit = 10
+    successful_jobs_history_limit = 1
     job_template {
       metadata {}
       spec {

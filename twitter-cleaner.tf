@@ -7,10 +7,10 @@ resource "kubernetes_cron_job" "twitter_cleaner" {
   }
   spec {
     concurrency_policy            = "Replace"
-    failed_jobs_history_limit     = 5
+    failed_jobs_history_limit     = 1
     schedule                      = "1 0 * * *"
     starting_deadline_seconds     = 10
-    successful_jobs_history_limit = 10
+    successful_jobs_history_limit = 1
     job_template {
       metadata {}
       spec {
