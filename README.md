@@ -1,3 +1,3 @@
 # home
 
-Go away.
+🚶‍♂️ Staying home...
