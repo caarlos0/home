@@ -1,7 +1,13 @@
+resource "kubernetes_namespace" "gitflux" {
+  metadata {
+	name = "gitflux"
+  }
+}
+
 resource "kubernetes_cron_job" "gitflux_caarlos0_repositories" {
   metadata {
     name      = "gitflux-caarlos0-repositories"
-    namespace = "default"
+    namespace = kubernetes_namespace.gitflux.metadata[0].name
     labels = {
       "app" = "gitflux"
     }
@@ -49,7 +55,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_repositories" {
 resource "kubernetes_cron_job" "gitflux_goreleaser_repositories" {
   metadata {
     name      = "gitflux-goreleaser-repositories"
-    namespace = "default"
+    namespace = kubernetes_namespace.gitflux.metadata[0].name
     labels = {
       "app" = "gitflux"
     }
@@ -98,7 +104,7 @@ resource "kubernetes_cron_job" "gitflux_goreleaser_repositories" {
 resource "kubernetes_cron_job" "gitflux_caarlos0_relationships" {
   metadata {
     name      = "gitflux-caarlos0-relationships"
-    namespace = "default"
+    namespace = kubernetes_namespace.gitflux.metadata[0].name
     labels = {
       "app" = "gitflux"
     }
@@ -146,7 +152,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_relationships" {
 resource "kubernetes_cron_job" "gitflux_caarlos0_notifications" {
   metadata {
     name      = "gitflux-caarlos0-notifications"
-    namespace = "default"
+    namespace = kubernetes_namespace.gitflux.metadata[0].name
     labels = {
       "app" = "gitflux"
     }
@@ -194,7 +200,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_notifications" {
 resource "kubernetes_secret" "gitflux" {
   metadata {
     name      = "gitflux"
-    namespace = "default"
+    namespace = kubernetes_namespace.gitflux.metadata[0].name
     labels = {
       "app" = "gitflux"
     }
