@@ -1,6 +1,6 @@
 resource "kubernetes_namespace" "gitflux" {
   metadata {
-	name = "gitflux"
+    name = "gitflux"
   }
 }
 
