@@ -63,9 +63,7 @@ dns:
   parental_cache_size: 1048576
   cache_time: 30
   rewrites:
-  - domain: grafana.home
-    answer: 192.168.0.134
-  - domain: adguard.home
+  - domain: '*.home'
     answer: 192.168.0.134
   blocked_services: []
   customresolver: null
