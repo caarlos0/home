@@ -1,0 +1,23 @@
+fullnameOverride: influxdb
+
+persistence:
+  storageClass: local-path
+  size: 2Gi
+
+image:
+  tag: 1.8
+
+ingress:
+  enabled: true
+  hostname: influx.home
+
+setDefaultUser:
+  enabled: true
+  user:
+    password: admin
+
+initScripts:
+  enabled: true
+  scripts:
+    init.iql: |+
+      CREATE DATABASE "github" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
