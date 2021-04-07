@@ -11,11 +11,6 @@ ingress:
   enabled: true
   hostname: influx.home
 
-setDefaultUser:
-  enabled: true
-  user:
-    password: admin
-
 initScripts:
   enabled: true
   scripts:
