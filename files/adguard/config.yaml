@@ -29,13 +29,12 @@ dns:
   ratelimit_whitelist: []
   refuse_any: true
   upstream_dns:
-  - https://dns10.quad9.net/dns-query
+  - https://dns.cloudflare.com/dns-query
+  - https://dns.google/dns-query
   upstream_dns_file: ""
   bootstrap_dns:
-  - 9.9.9.10
-  - 149.112.112.10
-  - 2620:fe::10
-  - 2620:fe::fe:10
+  - 1.1.1.1
+  - 8.8.8.8
   all_servers: false
   fastest_addr: false
   allowed_clients: []
@@ -65,6 +64,8 @@ dns:
   rewrites:
   - domain: '*.home'
     answer: 192.168.0.134
+  - domain: '*.home.vpn'
+    answer: 100.116.179.31
   blocked_services: []
   customresolver: null
 tls:
@@ -87,11 +88,11 @@ filters:
   url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
   name: AdGuard DNS filter
   id: 1
-- enabled: false
+- enabled: true
   url: https://adaway.org/hosts.txt
   name: AdAway Default Blocklist
   id: 2
-- enabled: false
+- enabled: true
   url: https://www.malwaredomainlist.com/hostslist/hosts.txt
   name: MalwareDomainList.com Hosts List
   id: 4
