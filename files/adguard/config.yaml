@@ -65,7 +65,7 @@ dns:
   - domain: '*.home'
     answer: 192.168.0.134
   - domain: '*.home.vpn'
-    answer: 100.116.179.31
+    answer: 100.74.156.114
   blocked_services: []
   customresolver: null
 tls:
