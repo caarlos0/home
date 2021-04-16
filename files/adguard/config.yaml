@@ -92,10 +92,14 @@ filters:
   url: https://adaway.org/hosts.txt
   name: AdAway Default Blocklist
   id: 2
-- enabled: true
+- enabled: false
   url: https://www.malwaredomainlist.com/hostslist/hosts.txt
   name: MalwareDomainList.com Hosts List
   id: 4
+- enabled: true
+  url: https://raw.githubusercontent.com/caarlos0/adguard-filters/main/list.txt
+  name: Personal Blocklist
+  id: 5
 whitelist_filters: []
 user_rules: []
 dhcp:
