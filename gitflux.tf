@@ -1,13 +1,7 @@
-resource "kubernetes_namespace" "gitflux" {
-  metadata {
-    name = "gitflux"
-  }
-}
-
 resource "kubernetes_cron_job" "gitflux_caarlos0_repositories" {
   metadata {
     name      = "gitflux-caarlos0-repositories"
-    namespace = kubernetes_namespace.gitflux.metadata[0].name
+    namespace = "default"
     labels = {
       "app" = "gitflux"
     }
@@ -55,7 +49,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_repositories" {
 resource "kubernetes_cron_job" "gitflux_goreleaser_repositories" {
   metadata {
     name      = "gitflux-goreleaser-repositories"
-    namespace = kubernetes_namespace.gitflux.metadata[0].name
+    namespace = "default"
     labels = {
       "app" = "gitflux"
     }
@@ -104,7 +98,7 @@ resource "kubernetes_cron_job" "gitflux_goreleaser_repositories" {
 resource "kubernetes_cron_job" "gitflux_caarlos0_relationships" {
   metadata {
     name      = "gitflux-caarlos0-relationships"
-    namespace = kubernetes_namespace.gitflux.metadata[0].name
+    namespace = "default"
     labels = {
       "app" = "gitflux"
     }
@@ -152,7 +146,7 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_relationships" {
 resource "kubernetes_cron_job" "gitflux_caarlos0_notifications" {
   metadata {
     name      = "gitflux-caarlos0-notifications"
-    namespace = kubernetes_namespace.gitflux.metadata[0].name
+    namespace = "default"
     labels = {
       "app" = "gitflux"
     }
@@ -197,10 +191,58 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_notifications" {
   }
 }
 
+resource "kubernetes_cron_job" "gitflux_caarlos0_sponsors" {
+  metadata {
+    name      = "gitflux-caarlos0-sponsors"
+    namespace = "default"
+    labels = {
+      "app" = "gitflux"
+    }
+  }
+  spec {
+    concurrency_policy            = "Replace"
+    failed_jobs_history_limit     = 1
+    schedule                      = "*/5 * * * *"
+    starting_deadline_seconds     = 10
+    successful_jobs_history_limit = 1
+    job_template {
+      metadata {}
+      spec {
+        backoff_limit              = 1
+        ttl_seconds_after_finished = 10
+        template {
+          metadata {
+            labels = {
+              "app" = "gitflux"
+            }
+          }
+          spec {
+            container {
+              name  = "gitflux"
+              image = "ghcr.io/caarlos0/gitflux:latest"
+              args = [
+                "--influx=http://influxdb.influx:8086",
+                "--influx-token='admin'",
+                "sponsors",
+              ]
+
+              env_from {
+                secret_ref {
+                  name = "gitflux"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 resource "kubernetes_secret" "gitflux" {
   metadata {
     name      = "gitflux"
-    namespace = kubernetes_namespace.gitflux.metadata[0].name
+    namespace = "default"
     labels = {
       "app" = "gitflux"
     }
