@@ -1,2 +1,19 @@
 pushgateway:
   enabled: false
+
+extraScrapeConfigs: |
+  - job_name: starcharts
+    static_configs:
+      - targets:
+        - starchart.cc
+  - job_name: watchub
+    static_configs:
+      - targets:
+        - watchub.pw
+
+server:
+  ingress:
+    enabled: true
+    hosts:
+      - prometheus.home
+      - prometheus.home.vpn
