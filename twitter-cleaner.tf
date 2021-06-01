@@ -26,7 +26,7 @@ resource "kubernetes_cron_job" "twitter_cleaner" {
             container {
               name  = "twitter-cleaner"
               image = "ghcr.io/caarlos0/twitter-cleaner:latest"
-              args  = ["--max-age=168h", "--debug"]
+              args  = ["--max-age=168h", "--debug", "--keep=goreleaser"]
 
               env_from {
                 secret_ref {
