@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "github_releases_exporter" {
   metadata {
     name      = "github-releases-exporter"
-    namespace = "prometheus"
+    namespace = helm_release.prometheus.metadata.0.namespace
     labels = {
       app = "github_releases_exporter"
     }
@@ -88,7 +88,7 @@ resource "kubernetes_deployment" "github_releases_exporter" {
 resource "kubernetes_service" "github_releases_exporter" {
   metadata {
     name      = "github-releases-exporter"
-    namespace = "prometheus"
+    namespace = helm_release.prometheus.metadata.0.namespace
 
     labels = {
       app = "github_releases_exporter"
@@ -114,7 +114,7 @@ resource "kubernetes_service" "github_releases_exporter" {
 resource "kubernetes_config_map" "github_releases_exporter" {
   metadata {
     name      = "github-releases-exporter"
-    namespace = "prometheus"
+    namespace = helm_release.prometheus.metadata.0.namespace
 
     labels = {
       app = "github_releases_exporter"
@@ -130,7 +130,7 @@ resource "kubernetes_config_map" "github_releases_exporter" {
 resource "kubernetes_secret" "github_releases_exporter" {
   metadata {
     name      = "github-releases-exporter"
-    namespace = "prometheus"
+    namespace = helm_release.prometheus.metadata.0.namespace
 
     labels = {
       app = "github_releases_exporter"

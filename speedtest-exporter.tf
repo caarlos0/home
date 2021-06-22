@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "speedtest_exporter" {
   metadata {
     name      = "speedtest-exporter"
-    namespace = "prometheus"
+    namespace = helm_release.prometheus.metadata.0.namespace
     labels = {
       app = "speedtest-exporter"
     }
@@ -63,7 +63,7 @@ resource "kubernetes_deployment" "speedtest_exporter" {
 resource "kubernetes_service" "speedtest_exporter" {
   metadata {
     name      = "speedtest-exporter"
-    namespace = "prometheus"
+    namespace = helm_release.prometheus.metadata.0.namespace
 
     labels = {
       app = "speedtest-exporter"

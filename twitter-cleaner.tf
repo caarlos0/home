@@ -1,6 +1,7 @@
 resource "kubernetes_cron_job" "twitter_cleaner" {
   metadata {
     name = "twitter-cleaner"
+	namespace = "default"
     labels = {
       "app" = "twitter-cleaner"
     }
@@ -44,6 +45,7 @@ resource "kubernetes_cron_job" "twitter_cleaner" {
 resource "kubernetes_secret" "twitter_cleaner" {
   metadata {
     name = "twitter-cleaner"
+	namespace = "default"
   }
 
   data = {

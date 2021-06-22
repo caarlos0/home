@@ -17,3 +17,11 @@ variable "twitter_access_token_secret" {
 variable "github_token" {
   type = string
 }
+
+variable "kubeconfig" {
+  default = "kubeconfig"
+}
+
+variable "master_ip" {
+  default = "192.168.68.110"
+}
