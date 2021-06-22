@@ -63,9 +63,9 @@ dns:
   cache_time: 30
   rewrites:
   - domain: '*.home'
-    answer: 192.168.0.134
-  - domain: '*.home.vpn'
-    answer: 100.74.156.114
+    answer: 192.168.68.110
+  # - domain: '*.home.vpn'
+  #   answer: 100.74.156.114
   blocked_services: []
   customresolver: null
 tls:
