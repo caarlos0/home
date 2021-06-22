@@ -8,3 +8,8 @@ ingress:
 adminPassword: admin
 image:
   tag: 8.0.0
+
+persistence:
+  enabled: true
+  storageClassName: local-path
+  size: 2Gi
