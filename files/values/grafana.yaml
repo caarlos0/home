@@ -6,3 +6,5 @@ ingress:
     - grafana.home.vpn
 
 adminPassword: admin
+image:
+  tag: 8.0.0
