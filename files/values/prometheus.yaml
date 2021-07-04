@@ -16,4 +16,3 @@ server:
     enabled: true
     hosts:
       - prometheus.home
-      - prometheus.home.vpn

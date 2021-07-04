@@ -32,7 +32,6 @@ resource "kubernetes_deployment" "speedtest_exporter" {
 
           port {
             container_port = 9876
-            name           = "metrics"
           }
 
           readiness_probe {

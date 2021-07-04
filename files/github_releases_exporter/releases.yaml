@@ -1,3 +1,4 @@
 repositories:
 - goreleaser/goreleaser
+- goreleaser/goreleaser-pro
 - goreleaser/nfpm

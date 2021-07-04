@@ -201,19 +201,6 @@ resource "kubernetes_ingress" "adguard" {
         }
       }
     }
-    rule {
-      host = "adguard.home.vpn"
-      http {
-        path {
-          backend {
-            service_name = "adguard"
-            service_port = 3000
-          }
-
-          path = "/"
-        }
-      }
-    }
   }
 }
 

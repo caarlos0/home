@@ -3,7 +3,6 @@ ingress:
   path: /
   hosts:
     - grafana.home
-    - grafana.home.vpn
 
 adminPassword: admin
 image:

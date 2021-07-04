@@ -40,12 +40,12 @@ resource "kubernetes_deployment" "github_releases_exporter" {
           args = [
             "--config.file=/etc/github_releases_exporter/releases.yml",
             "--releases.max=10",
-            "--refresh.interval=30m",
+            "--refresh.interval=1h",
+            "--debug",
           ]
 
           port {
             container_port = 9222
-            name           = "metrics"
           }
 
           readiness_probe {
