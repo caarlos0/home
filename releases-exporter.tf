@@ -41,7 +41,6 @@ resource "kubernetes_deployment" "github_releases_exporter" {
             "--config.file=/etc/github_releases_exporter/releases.yml",
             "--releases.max=10",
             "--refresh.interval=1h",
-            "--debug",
           ]
 
           port {
