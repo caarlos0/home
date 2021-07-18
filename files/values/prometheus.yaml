@@ -13,7 +13,7 @@ extraScrapeConfigs: |
   - job_name: redis
     static_configs:
       - targets:
-        - 143.198.186.99:9121
+        - s01.caarlos0.dev:9121
 
 server:
   ingress:
