@@ -10,6 +10,10 @@ extraScrapeConfigs: |
     static_configs:
       - targets:
         - watchub.pw
+  - job_name: redis
+    static_configs:
+      - targets:
+        - 143.198.186.99:9121
 
 server:
   ingress:
