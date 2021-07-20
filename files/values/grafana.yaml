@@ -6,7 +6,7 @@ ingress:
 
 adminPassword: admin
 image:
-  tag: 8.0.0
+  tag: 8.0.6
 
 persistence:
   enabled: true

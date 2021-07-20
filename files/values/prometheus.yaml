@@ -27,3 +27,5 @@ server:
     enabled: true
     hosts:
       - prometheus.home
+  image:
+    tag: v2.28.1
