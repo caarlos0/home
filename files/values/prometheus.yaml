@@ -7,17 +7,17 @@ pushgateway:
   #       - luckystar.carlosbecker.dev
 extraScrapeConfigs: |
   - job_name: starcharts
-    scrape_interval: 5m
+    scrape_interval: 1m
     static_configs:
       - targets:
         - starchart.cc
   - job_name: watchub
-    scrape_interval: 5m
+    scrape_interval: 1m
     static_configs:
       - targets:
         - watchub.pw
   - job_name: redis
-    scrape_interval: 5m
+    scrape_interval: 1m
     static_configs:
       - targets:
         - s01.caarlos0.dev:9121

@@ -1,9 +1,9 @@
-resource "kubernetes_deployment" "speedtest_exporter" {
+resource "kubernetes_deployment" "fastcom_exporter" {
   metadata {
-    name      = "speedtest-exporter"
+    name      = "fastcom-exporter"
     namespace = helm_release.prometheus.metadata.0.namespace
     labels = {
-      app = "speedtest-exporter"
+      app = "fastcom-exporter"
     }
   }
 
@@ -12,32 +12,32 @@ resource "kubernetes_deployment" "speedtest_exporter" {
 
     selector {
       match_labels = {
-        app = "speedtest-exporter"
+        app = "fastcom-exporter"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = "speedtest-exporter"
+          app = "fastcom-exporter"
         }
       }
 
       spec {
         container {
-          image = "ghcr.io/caarlos0/speedtest-exporter:v1.0.0"
+          image = "ghcr.io/caarlos0/fastcom-exporter:v1.0.0"
           name  = "exporter"
 
-          args = ["--debug"]
+          args = ["--debug", "--bind=:9877"]
 
           port {
-            container_port = 9876
+            container_port = 9877
           }
 
           readiness_probe {
             http_get {
               path = "/"
-              port = 9876
+              port = 9877
             }
 
             initial_delay_seconds = 3
@@ -47,7 +47,7 @@ resource "kubernetes_deployment" "speedtest_exporter" {
           liveness_probe {
             http_get {
               path = "/"
-              port = 9876
+              port = 9877
             }
 
             initial_delay_seconds = 3
@@ -59,28 +59,28 @@ resource "kubernetes_deployment" "speedtest_exporter" {
   }
 }
 
-resource "kubernetes_service" "speedtest_exporter" {
+resource "kubernetes_service" "fastcom_exporter" {
   metadata {
-    name      = "speedtest-exporter"
+    name      = "fastcom-exporter"
     namespace = helm_release.prometheus.metadata.0.namespace
 
     labels = {
-      app = "speedtest-exporter"
+      app = "fastcom-exporter"
     }
 
     annotations = {
       "prometheus.io/scrape" = "true"
       "prometheus.io/path"   = "/metrics"
-      "prometheus.io/port"   = "9876"
+      "prometheus.io/port"   = "9877"
     }
   }
   spec {
     selector = {
-      app = "speedtest-exporter"
+      app = "fastcom-exporter"
     }
     port {
-      port        = 9876
-      target_port = 9876
+      port        = 9877
+      target_port = 9877
     }
   }
 }
