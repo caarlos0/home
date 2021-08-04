@@ -12,7 +12,7 @@ web_session_ttl: 720
 dns:
   bind_host: 0.0.0.0
   port: 53
-  statistics_interval: 7
+  statistics_interval: 90
   querylog_enabled: true
   querylog_file_enabled: true
   querylog_interval: 90
@@ -56,7 +56,7 @@ dns:
   filters_update_interval: 24
   parental_enabled: false
   safesearch_enabled: false
-  safebrowsing_enabled: false
+  safebrowsing_enabled: true
   safebrowsing_cache_size: 1048576
   safesearch_cache_size: 1048576
   parental_cache_size: 1048576
