@@ -24,20 +24,24 @@ resource "kubernetes_deployment" "fastcom_exporter" {
       }
 
       spec {
+        node_selector = {
+          "kubernetes.io/hostname" = "pi4"
+        }
+
         container {
-          image = "ghcr.io/caarlos0/fastcom-exporter:v1.3.1"
-          name  = "exporter"
+          image = "caarlos0/fastcom-exporter"
+          name  = "fastcom-exporter"
 
           args = ["--debug"]
 
           port {
-            container_port = 9877
+            container_port = 9875
           }
 
           readiness_probe {
             http_get {
               path = "/"
-              port = 9877
+              port = 9875
             }
 
             initial_delay_seconds = 3
@@ -47,7 +51,7 @@ resource "kubernetes_deployment" "fastcom_exporter" {
           liveness_probe {
             http_get {
               path = "/"
-              port = 9877
+              port = 9875
             }
 
             initial_delay_seconds = 3
@@ -71,7 +75,7 @@ resource "kubernetes_service" "fastcom_exporter" {
     annotations = {
       "prometheus.io/scrape" = "true"
       "prometheus.io/path"   = "/metrics"
-      "prometheus.io/port"   = "9877"
+      "prometheus.io/port"   = "9875"
     }
   }
   spec {
@@ -79,8 +83,8 @@ resource "kubernetes_service" "fastcom_exporter" {
       app = "fastcom-exporter"
     }
     port {
-      port        = 9877
-      target_port = 9877
+      port        = 9875
+      target_port = 9875
     }
   }
 }
