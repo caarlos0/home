@@ -25,7 +25,7 @@ resource "kubernetes_deployment" "speedtest_exporter" {
 
       spec {
         container {
-          image = "ghcr.io/caarlos0/speedtest-exporter:v1.0.0"
+          image = "ghcr.io/caarlos0/speedtest-exporter:v1.1.1"
           name  = "exporter"
 
           args = ["--debug"]
