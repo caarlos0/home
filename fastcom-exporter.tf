@@ -32,7 +32,7 @@ resource "kubernetes_deployment" "fastcom_exporter" {
           image = "ghcr.io/caarlos0/fastcom-exporter:v1.3.3"
           name  = "fastcom-exporter"
 
-          args = ["--debug"]
+          args = ["--debug", "--bind=:9875"]
 
           port {
             container_port = 9875
