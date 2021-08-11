@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "fastcom_exporter" {
         }
 
         container {
-          image = "caarlos0/fastcom-exporter"
+          image = "ghcr.io/caarlos0/fastcom-exporter:v1.3.3"
           name  = "fastcom-exporter"
 
           args = ["--debug"]

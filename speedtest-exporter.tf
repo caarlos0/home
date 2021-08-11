@@ -29,7 +29,7 @@ resource "kubernetes_deployment" "speedtest_exporter" {
         }
 
         container {
-          image = "caarlos0/speedtest-exporter"
+          image = "ghcr.io/caarlos0/speedtest-exporter:v1.1.2"
           name  = "speedtest-exporter"
 
           args = ["--debug"]
