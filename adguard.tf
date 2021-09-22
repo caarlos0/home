@@ -189,7 +189,7 @@ resource "kubernetes_ingress" "adguard" {
     }
 
     rule {
-      host = "adguard.home"
+      host = "adguard.homes"
       http {
         path {
           backend {

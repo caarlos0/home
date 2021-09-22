@@ -9,7 +9,7 @@ image:
 
 ingress:
   enabled: true
-  hostname: influx.home
+  hostname: influx.homes
 
 initScripts:
   enabled: true

@@ -26,6 +26,6 @@ server:
   ingress:
     enabled: true
     hosts:
-      - prometheus.home
+      - prometheus.homes
   image:
     tag: v2.28.1

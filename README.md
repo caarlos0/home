@@ -35,10 +35,27 @@ sudo reboot
 ## adguard needs to listen on port 53
 
 ```sh
-ssh ubuntu@$IP
+ssh ubuntu@pi4.local # node that will run adguard only
 
-echo "DNSStubListener=no" | sudo tee -a /etc/systemd/resolved.conf
-sudo systemctl restart systemd-resolved.service
+sudo mkdir -p /etc/systemd/resolved.conf.d/
+echo "[Resolve]
+DNS=127.0.0.1
+DNSStubListener=no
+" | sudo tee /etc/systemd/resolved.conf.d/adguardhome.conf
+
+sudo mv /etc/resolv.conf /etc/resolv.conf.backup
+sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
+sudo systemctl reload-or-restart systemd-resolved
+```
+
+## setup tailscale
+
+```sh
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+sudo apt-get update
+sudo apt-get install tailscale
+sudo tailscale up -authkey $TSKEY
 ```
 
 ## setup k3s

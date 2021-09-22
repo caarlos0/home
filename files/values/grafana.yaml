@@ -2,7 +2,7 @@ ingress:
   enabled: true
   path: /
   hosts:
-    - grafana.home
+    - grafana.homes
 
 adminPassword: admin
 image:
