@@ -30,11 +30,9 @@ dns:
   refuse_any: true
   upstream_dns:
   - https://dns.cloudflare.com/dns-query
-  - https://dns.google/dns-query
   upstream_dns_file: ""
   bootstrap_dns:
   - 1.1.1.1
-  - 8.8.8.8
   all_servers: false
   fastest_addr: false
   allowed_clients: []

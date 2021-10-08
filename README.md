@@ -48,6 +48,7 @@ sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 sudo systemctl reload-or-restart systemd-resolved
 
 sudo systemctl status systemd-resolved
+journalctl -fu systemd-resolved
 ```
 
 ## setup tailscale
@@ -63,8 +64,8 @@ sudo tailscale up -authkey $TSKEY
 ## setup k3s
 
 ```sh
-k3sup install --user ubuntu --host pi4.local --ip 192.168.68.110 --local-path kubeconfig --k3s-version v1.22.2+k3s1
-k3sup join --user ubuntu --host pi3.local --ip 192.168.68.109 --server-ip 192.168.68.110 --k3s-version v1.22.2+k3s1
+k3sup install --user ubuntu --host pi4.local --ip 192.168.68.110 --local-path kubeconfig --k3s-version v1.22.2+k3s2
+k3sup join --user ubuntu --host pi3.local --ip 192.168.68.109 --server-ip 192.168.68.110 --k3s-version v1.22.2+k3s2
 
 set -xg KUBECONFIG $PWD/kubeconfig
 kubectl get nodes -w -owide
