@@ -25,7 +25,8 @@ extraScrapeConfigs: |
 server:
   ingress:
     enabled: true
+    ingressClassName: traefik
     hosts:
       - prometheus.homes
   image:
-    tag: v2.28.1
+    tag: v2.30.3

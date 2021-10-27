@@ -165,6 +165,7 @@ resource "kubernetes_service" "adguard" {
     selector = {
       app = "adguard"
     }
+
     port {
       port        = 3000
       target_port = 3000
@@ -172,37 +173,38 @@ resource "kubernetes_service" "adguard" {
   }
 }
 
-resource "kubernetes_ingress" "adguard" {
-  metadata {
-    name      = "adguard"
-    namespace = "default"
+# TODO: uncomment when next kubernetes provider is out
+# resource "kubernetes_ingress" "adguard" {
+#   metadata {
+#     name      = "adguard"
+#     namespace = "default"
 
-    labels = {
-      app = "adguard"
-    }
-  }
+#     labels = {
+#       app = "adguard"
+#     }
+#   }
 
-  spec {
-    backend {
-      service_name = "adguard"
-      service_port = 3000
-    }
+#   spec {
+#     backend {
+#       service_name = "adguard"
+#       service_port = 3000
+#     }
 
-    rule {
-      host = "adguard.homes"
-      http {
-        path {
-          backend {
-            service_name = "adguard"
-            service_port = 3000
-          }
+#     rule {
+#       host = "adguard.homes"
+#       http {
+#         path {
+#           backend {
+#             service_name = "adguard"
+#             service_port = 3000
+#           }
 
-          path = "/"
-        }
-      }
-    }
-  }
-}
+#           path = "/"
+#         }
+#       }
+#     }
+#   }
+# }
 
 resource "kubernetes_config_map" "adguard" {
   metadata {
