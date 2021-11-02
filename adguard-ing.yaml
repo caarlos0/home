@@ -6,7 +6,6 @@ metadata:
   name: adguard
   namespace: default
 spec:
-  ingressClassName: traefik
   rules:
   - host: adguard.homes
     http:

@@ -1,7 +1,6 @@
 ingress:
   enabled: true
   path: /
-  ingressClassName: traefik
   hosts:
     - grafana.homes
 
