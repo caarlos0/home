@@ -24,6 +24,9 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_repositories" {
             }
           }
           spec {
+            node_selector = {
+              "kubernetes.io/hostname" = "pi3"
+            }
             container {
               name  = "gitflux"
               image = "ghcr.io/caarlos0/gitflux:latest"
@@ -72,6 +75,9 @@ resource "kubernetes_cron_job" "gitflux_goreleaser_repositories" {
             }
           }
           spec {
+            node_selector = {
+              "kubernetes.io/hostname" = "pi3"
+            }
             container {
               name  = "gitflux"
               image = "ghcr.io/caarlos0/gitflux:latest"
@@ -121,6 +127,9 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_relationships" {
             }
           }
           spec {
+            node_selector = {
+              "kubernetes.io/hostname" = "pi3"
+            }
             container {
               name  = "gitflux"
               image = "ghcr.io/caarlos0/gitflux:latest"
@@ -169,6 +178,9 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_notifications" {
             }
           }
           spec {
+            node_selector = {
+              "kubernetes.io/hostname" = "pi3"
+            }
             container {
               name  = "gitflux"
               image = "ghcr.io/caarlos0/gitflux:latest"
@@ -217,6 +229,9 @@ resource "kubernetes_cron_job" "gitflux_caarlos0_sponsors" {
             }
           }
           spec {
+            node_selector = {
+              "kubernetes.io/hostname" = "pi3"
+            }
             container {
               name  = "gitflux"
               image = "ghcr.io/caarlos0/gitflux:latest"
