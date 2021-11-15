@@ -21,6 +21,21 @@ extraScrapeConfigs: |
     static_configs:
       - targets:
         - s01.caarlos0.dev:9121
+  - job_name: confettysh
+    scrape_interval: 30s
+    static_configs:
+      - targets:
+        - ssh.caarlos0.dev:9222
+  - job_name: fireworksh
+    scrape_interval: 30s
+    static_configs:
+      - targets:
+        - ssh.caarlos0.dev:9223
+  - job_name: parttysh
+    scrape_interval: 30s
+    static_configs:
+      - targets:
+        - ssh.caarlos0.dev:9225
 
 server:
   ingress:
