@@ -47,9 +47,10 @@ resource "kubernetes_stateful_set" "adguard" {
         }
 
         init_container {
-          name    = "cp-config"
-          image   = "alpine"
-          command = ["cp", "/config/AdGuardHome.yaml", "/volume/AdGuardHome.yaml"]
+          name              = "cp-config"
+          image             = "alpine:3.15.0"
+          image_pull_policy = "IfNotPresent"
+          command           = ["cp", "/config/AdGuardHome.yaml", "/volume/AdGuardHome.yaml"]
 
           volume_mount {
             mount_path = "/config"
