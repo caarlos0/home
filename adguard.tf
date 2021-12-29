@@ -65,7 +65,7 @@ resource "kubernetes_stateful_set" "adguard" {
 
         container {
           name              = "adguard"
-          image             = "adguard/adguardhome:v0.107.1"
+          image             = "adguard/adguardhome:v0.107.2"
           image_pull_policy = "IfNotPresent"
 
           liveness_probe {
