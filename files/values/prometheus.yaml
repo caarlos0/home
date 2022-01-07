@@ -44,3 +44,13 @@ server:
       - prometheus.homes
   image:
     tag: v2.32.1
+
+  # retention: "60d"
+
+  resources:
+    limits:
+      cpu: 1
+      memory: 1.5Gi
+    requests:
+      cpu: 1
+      memory: 1.5Gi
