@@ -14,6 +14,18 @@ Nodes are `pi3` and `pi4`, IPs `192.168.68.109` and `192.168.68.110` respectivel
 # export IP=192.168.68.109
 # export IP=192.168.68.110
 
+# make ssh pi3 and ssh pi4 work
+echo '
+Host pi3 pi4
+  User ubuntu
+
+Host pi3
+  HostName pi3.local
+
+Host pi4
+  HostName pi4.local
+' >>~/.ssh/config
+
 # will ask to change password et al
 ssh ubuntu@$IP
 
@@ -28,27 +40,30 @@ ssh ubuntu@$IP
 hostname | sudo tee /etc/hostname
 sudo sed -i'' "s/127.0.0.1 localhost/127.0.0.1 localhost $(hostname)/" /etc/hosts
 sudo apt update
-sudo apt install -qy avahi-daemon # makes pi3.local and pi4.local work :)
+sudo apt install -qy avahi-daemon              # makes pi3.local and pi4.local work :)
+sudo apt install -qy linux-modules-extra-raspi # needed for k3s
+
+sudo timedatectl set-ntp true
+sudo timedatectl set-timezone America/Sao_Paulo
+sudo timedatectl timesync-status
+date
+
 sudo reboot
 ```
 
-## adguard needs to listen on port 53
+## setup adguard
+
+> only on pi4
 
 ```sh
-ssh ubuntu@pi4.local # node that will run adguard only
+scp ./files/adguard/config.yaml pi4:/tmp/
 
-sudo mkdir -p /etc/systemd/resolved.conf.d/
-echo "[Resolve]
-DNS=127.0.0.1
-DNSStubListener=no
-" | sudo tee /etc/systemd/resolved.conf.d/adguardhome.conf
 
-sudo mv /etc/resolv.conf /etc/resolv.conf.backup
-sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
-sudo systemctl reload-or-restart systemd-resolved
-
-sudo systemctl status systemd-resolved
-journalctl -fu systemd-resolved
+ssh pi4 # node that will run adguard only
+curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
+# sudo /opt/AdGuardHome/AdGuardHome -s start|stop|restart|status|install|uninstall
+sudo cp -f /tmp/config.yaml /opt/AdGuardHome/AdGuardHome.yaml
+sudo /opt/AdGuardHome/AdGuardHome -s restart
 ```
 
 ## setup tailscale
@@ -64,15 +79,22 @@ sudo tailscale up -authkey $TSKEY
 ## setup k3s
 
 ```sh
-k3sup install --user ubuntu --host pi4.local --ip 192.168.68.110 --local-path kubeconfig --k3s-version v1.22.2+k3s2
-k3sup join --user ubuntu --host pi3.local --ip 192.168.68.109 --server-ip 192.168.68.110 --k3s-version v1.22.2+k3s2
+k3sup install --user ubuntu --ip 192.168.68.110 --local-path ~/.kube/config
+k3sup join --user ubuntu --ip 192.168.68.109 --server-ip 192.168.68.110
 
-set -xg KUBECONFIG $PWD/kubeconfig
+kubectl config set-context default
 kubectl get nodes -w -owide
 ```
 
 ## install stuff
 
-```
-terraform apply
+```sh
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add influxdata https://helm.influxdata.com
+helm repo add traefik https://helm.traefik.io/traefik
+helm repo update
+
+helm repo update
+./yolo
 ```

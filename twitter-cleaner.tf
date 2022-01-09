@@ -24,9 +24,6 @@ resource "kubernetes_cron_job" "twitter_cleaner" {
             }
           }
           spec {
-            node_selector = {
-              "kubernetes.io/hostname" = "pi3"
-            }
             container {
               name  = "twitter-cleaner"
               image = "ghcr.io/caarlos0/twitter-cleaner:latest"

@@ -24,10 +24,6 @@ resource "kubernetes_deployment" "fastcom_exporter" {
       }
 
       spec {
-        node_selector = {
-          "kubernetes.io/hostname" = "pi4"
-        }
-
         container {
           image = "ghcr.io/caarlos0/fastcom-exporter:v1.3.3"
           name  = "fastcom-exporter"

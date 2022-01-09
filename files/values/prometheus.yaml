@@ -45,7 +45,7 @@ server:
   image:
     tag: v2.32.1
 
-  # retention: "60d"
+  retention: "45d"
 
   resources:
     limits:

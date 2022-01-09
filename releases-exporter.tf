@@ -27,9 +27,6 @@ resource "kubernetes_deployment" "github_releases_exporter" {
       }
 
       spec {
-        node_selector = {
-          "kubernetes.io/hostname" = "pi3"
-        }
         container {
           image = "ghcr.io/caarlos0/github_releases_exporter:v1.6.0"
           name  = "exporter"

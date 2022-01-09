@@ -24,10 +24,6 @@ resource "kubernetes_deployment" "speedtest_exporter" {
       }
 
       spec {
-        node_selector = {
-          "kubernetes.io/hostname" = "pi4"
-        }
-
         container {
           image = "ghcr.io/caarlos0/speedtest-exporter:v1.1.3"
           name  = "speedtest-exporter"
