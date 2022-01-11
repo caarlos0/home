@@ -54,3 +54,7 @@ server:
     requests:
       cpu: 1
       memory: 1.5Gi
+
+
+alertmanager:
+  enabled: false
