@@ -264,3 +264,54 @@ resource "kubernetes_secret" "gitflux" {
     GITHUB_TOKEN = var.github_token
   }
 }
+
+resource "kubernetes_cron_job" "gitflux_charmbracelet_repositories" {
+  depends_on = [helm_release.influx]
+
+  metadata {
+    name      = "gitflux-charmbracelet-repositories"
+    namespace = "influx"
+    labels = {
+      "app" = "gitflux"
+    }
+  }
+  spec {
+    concurrency_policy            = "Replace"
+    failed_jobs_history_limit     = 1
+    schedule                      = "*/15 * * * *"
+    starting_deadline_seconds     = 10
+    successful_jobs_history_limit = 1
+    job_template {
+      metadata {}
+      spec {
+        backoff_limit              = 1
+        ttl_seconds_after_finished = 10
+        template {
+          metadata {
+            labels = {
+              "app" = "gitflux"
+            }
+          }
+          spec {
+            container {
+              name  = "gitflux"
+              image = "ghcr.io/caarlos0/gitflux:latest"
+              args = [
+                "--influx=http://influxdb:8086",
+                "--influx-token='admin'",
+                "repository",
+                "charmbracelet",
+              ]
+
+              env_from {
+                secret_ref {
+                  name = "gitflux"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
