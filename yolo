@@ -1,2 +1,0 @@
-#!/bin/sh
-terraform fmt -write -recursive . && terraform apply -auto-approve

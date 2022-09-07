@@ -10,6 +10,9 @@ Nodes are `pi3` and `pi4`, IPs `192.168.68.109` and `192.168.68.110` respectivel
 
 ## setup hosts
 
+> TODO: I should probably make part of this in one host, then duplicate the
+> sd-card. This shit takes forever to finish.
+
 ```sh
 # export IP=192.168.68.109
 # export IP=192.168.68.110
@@ -40,8 +43,14 @@ ssh ubuntu@$IP
 hostname | sudo tee /etc/hostname
 sudo sed -i'' "s/127.0.0.1 localhost/127.0.0.1 localhost $(hostname)/" /etc/hosts
 sudo apt update
+sudo apt upgrade -qy
+sudo dpkg-reconfigure unattended-upgrades
+sudo reboot
+sudo apt autoremove
+sudo apt autoclean
 sudo apt install -qy avahi-daemon              # makes pi3.local and pi4.local work :)
-sudo apt install -qy linux-modules-extra-raspi # needed for k3s
+sudo apt install -qy linux-modules-extra-raspi # needed for k3s, takes forever, especially on the pi3
+
 
 sudo timedatectl set-ntp true
 sudo timedatectl set-timezone America/Sao_Paulo
@@ -51,36 +60,22 @@ date
 sudo reboot
 ```
 
-## setup adguard
-
-> only on pi4
-
-```sh
-scp ./files/adguard/config.yaml pi4:/tmp/
-
-
-ssh pi4 # node that will run adguard only
-curl -s -S -L https://raw.githubusercontent.com/AdguardTeam/AdGuardHome/master/scripts/install.sh | sh -s -- -v
-# sudo /opt/AdGuardHome/AdGuardHome -s start|stop|restart|status|install|uninstall
-sudo cp -f /tmp/config.yaml /opt/AdGuardHome/AdGuardHome.yaml
-sudo /opt/AdGuardHome/AdGuardHome -s restart
-```
-
 ## setup tailscale
 
 ```sh
-curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
-curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+curl -fssl https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
+curl -fssl https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list
 sudo apt-get update
 sudo apt-get install tailscale
-sudo tailscale up -authkey $TSKEY
+sudo tailscale up -authkey $tskey
 ```
 
 ## setup k3s
 
 ```sh
-k3sup install --user ubuntu --ip 192.168.68.110 --local-path ~/.kube/config
-k3sup join --user ubuntu --ip 192.168.68.109 --server-ip 192.168.68.110
+curl -sLS https://get.k3sup.dev | sh
+k3sup install --user ubuntu --ip 192.168.68.110 --local-path ~/.kube/config --ssh-key ~/.ssh/id_ed25519
+k3sup join --user ubuntu --ip 192.168.68.109 --server-ip 192.168.68.110 --ssh-key ~/.ssh/id_ed25519
 
 kubectl config set-context default
 kubectl get nodes -w -owide
