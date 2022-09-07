@@ -16,7 +16,6 @@ spec:
     crds: Create
   upgrade:
     crds: CreateReplace
-  serviceMonitorSelector: {}
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
@@ -38,6 +37,7 @@ spec:
             cpu: 200m
             memory: 200Mi
         podMonitorNamespaceSelector: {}
-        podMonitorSelector:
-          matchLabels:
-            app.kubernetes.io/component: monitoring
+        podMonitorSelector: {}
+        serviceMonitorNamespaceSelector: {}
+        serviceMonitorSelector: {}
+
