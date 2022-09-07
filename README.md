@@ -84,12 +84,8 @@ kubectl get nodes -w -owide
 ## install stuff
 
 ```sh
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo add influxdata https://helm.influxdata.com
-helm repo add traefik https://helm.traefik.io/traefik
-helm repo update
-
-helm repo update
-./yolo
+flux create source helm prometheus-community --url https://prometheus-community.github.io/helm-charts
+flux create source helm grafana --url https://grafana.github.io/helm-charts
+flux create source helm influxdata --url https://helm.influxdata.com
+flux create source helm traefik --url https://helm.traefik.io/traefik
 ```
