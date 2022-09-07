@@ -39,5 +39,6 @@ spec:
         podMonitorNamespaceSelector: {}
         podMonitorSelector: {}
         serviceMonitorNamespaceSelector: {}
-        serviceMonitorSelector: {}
+        serviceMonitorSelector:
+          matchLabels: {}
 
