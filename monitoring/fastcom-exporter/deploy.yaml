@@ -20,7 +20,8 @@ spec:
         image: ghcr.io/caarlos0/fastcom-exporter:v1.3.3
         args: ["--bind=:9875"]
         ports:
-        - containerPort: 9875
+        - name: metrics
+          containerPort: 9875
       readinessProbe:
         httpGet:
           path: /

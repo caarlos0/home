@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: fastcom-exporter
+  namespace: monitoring
+  labels:
+    app: fastcom-exporter
+spec:
+  endpoints:
+  - honorLabels: true
+    path: /metrics
+    port: metrics
+    scheme: http
+    scrapeTimeout: 30s
+  jobLabel: fastcom-exporter
+  namespaceSelector:
+    matchNames:
+    - monitoring
+  selector:
+    matchLabels:
+      app: fastcom-exporter
