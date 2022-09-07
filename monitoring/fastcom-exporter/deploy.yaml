@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastcom-exporter
+  namespace: monitoring
+  labels:
+    app: fastcom-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastcom-exporter
+  template:
+    metadata:
+      labels:
+        app: fastcom-exporter
+    spec:
+      containers:
+      - name: fastcom-exporter
+        image: ghcr.io/caarlos0/fastcom-exporter:v1.3.3
+        args: ["--bind=:9875"]
+        ports:
+        - containerPort: 9875
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 9875
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9875
+        initialDelaySeconds: 5
+        periodSeconds: 5
+
+
