@@ -16,6 +16,7 @@ spec:
     crds: Create
   upgrade:
     crds: CreateReplace
+  serviceMonitorSelector: {}
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
   values:
     alertmanager:
