@@ -1,5 +1,5 @@
 apiVersion: monitoring.coreos.com/v1
-kind: PodMonitor
+kind: ServiceMonitor
 metadata:
   name: fastcom-exporter
   namespace: monitoring
