@@ -36,3 +36,10 @@ spec:
           requests:
             cpu: 200m
             memory: 200Mi
+        podMonitorNamespaceSelector: {}
+        serviceMonitorNamespaceSelector: {}
+        podMonitorSelector:
+          matchLabels: {}
+        serviceMonitorSelector:
+          matchLabels: {}
+
