@@ -5,6 +5,7 @@ metadata:
   namespace: monitoring
   labels:
     app: fastcom-exporter
+    release: prometheus
 spec:
   endpoints:
   - honorLabels: true
