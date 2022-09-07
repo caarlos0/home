@@ -9,7 +9,7 @@ spec:
   endpoints:
   - honorLabels: true
     path: /metrics
-    port: metrics
+    targetPort: 9875
     scheme: http
     scrapeTimeout: 30s
   jobLabel: fastcom-exporter

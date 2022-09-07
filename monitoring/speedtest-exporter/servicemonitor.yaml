@@ -9,7 +9,7 @@ spec:
   endpoints:
   - honorLabels: true
     path: /metrics
-    port: metrics
+    targetPort: 9876
     scheme: http
     scrapeTimeout: 30s
   jobLabel: speedtest-exporter
