@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: speedtest-exporter
-  nemespace: monitoring
+  namespace: monitoring
   labels:
     app: speedtest-exporter
 spec:
