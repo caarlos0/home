@@ -15,3 +15,5 @@ spec:
             name: beehive
             port:
               number: 8181
+        pathType: Prefix
+        path: /
