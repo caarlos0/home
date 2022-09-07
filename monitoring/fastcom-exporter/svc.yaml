@@ -5,10 +5,6 @@ metadata:
   nemespace: monitoring
   labels:
     app: fastcom-exporter
-  annotations:
-    prometheus.io/scrape: true
-    prometheus.io/path: /metrics
-    prometheus.io/port: 9875
 spec:
   selector:
     app: fastcom-exporter
