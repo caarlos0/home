@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - namespace.yaml
+  - prometheus.yaml
   - speedtest-exporter
   - fastcom-exporter
