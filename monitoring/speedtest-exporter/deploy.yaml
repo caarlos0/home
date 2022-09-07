@@ -19,7 +19,8 @@ spec:
       - name: speedtest-exporter
         image: ghcr.io/caarlos0/speedtest-exporter:v1.1.3
         ports:
-        - containerPort: 9876
+        - name: metrics
+          containerPort: 9876
       readinessProbe:
         httpGet:
           path: /
