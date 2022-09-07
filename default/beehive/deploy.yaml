@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beehive
+  namespace: monitoring
+  labels:
+    app: beehive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beehive
+  template:
+    metadata:
+      labels:
+        app: beehive
+    spec:
+      containers:
+      - name: beehive
+        image: fribbledom/beehive
+        ports:
+        - containerPort: 8181
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 8181
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8181
+        initialDelaySeconds: 5
+        periodSeconds: 5
+
+
