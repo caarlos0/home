@@ -19,31 +19,9 @@ spec:
           - name: twitter-cleaner
             image: ghcr.io/caarlos0/twitter-cleaner
             imagePullPolicy: IfNotPresent
-            env:
-              - name: TWITTER_CONSUMER_KEY
-                valueFrom:
-                  secretKeyRef:
-                    name: twitter-cleaner
-                    key: TWITTER_CONSUMER_KEY
-                    optional: false
-              - name: TWITTER_CONSUMER_SECRET
-                valueFrom:
-                  secretKeyRef:
-                    name: twitter-cleaner
-                    key: TWITTER_CONSUMER_SECRET
-                    optional: false
-              - name: TWITTER_ACCESS_TOKEN
-                valueFrom:
-                  secretKeyRef:
-                    name: twitter-cleaner
-                    key: TWITTER_ACCESS_TOKEN
-                    optional: false
-              - name: TWITTER_ACCESS_TOKEN_SECRET
-                valueFrom:
-                  secretKeyRef:
-                    name: twitter-cleaner
-                    key: TWITTER_ACCESS_TOKEN_SECRET
-                    optional: false
+            envFrom:
+              - secretRef:
+                name: twitter-cleaner
             args:
               - '--max-age=336h'
               - '--dry-run'
