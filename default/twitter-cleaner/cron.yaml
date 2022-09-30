@@ -23,8 +23,8 @@ spec:
             - secretRef:
                 name: twitter-cleaner
             args:
+              # - '--dry-run'
               - '--max-age=336h'
-              - '--dry-run'
               - '--debug'
               - '--keep=1433157814415941640'
               - '--keep=1460595005391880193'
@@ -35,6 +35,7 @@ spec:
               - '--keep=caarlos0.dev'
               - '--keep=carlosbecker.com'
               - '--keep=carlosbecker.dev'
+              - '--keep=catppuccin'
               - '--keep=charm'
               - '--keep=cloud'
               - '--keep=database'
@@ -44,7 +45,9 @@ spec:
               - '--keep=git'
               - '--keep=github'
               - '--keep=github.com/caarlos0'
+              - '--keep=golang'
               - '--keep=goreleaser'
+              - '--keep=gruvbox'
               - '--keep=k3s'
               - '--keep=k8s'
               - '--keep=kubernetes'
@@ -54,6 +57,7 @@ spec:
               - '--keep=nfpm'
               - '--keep=nvim'
               - '--keep=observability'
+              - '--keep=opensource'
               - '--keep=postgres'
               - '--keep=program'
               - '--keep=prometheus'
@@ -61,6 +65,7 @@ spec:
               - '--keep=reliability'
               - '--keep=rust'
               - '--keep=software'
+              - '--keep=source'
               - '--keep=sql'
               - '--keep=sre'
               - '--keep=ssh'
