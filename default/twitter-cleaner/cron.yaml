@@ -46,6 +46,7 @@ spec:
                     optional: false
             args:
               - '--max-age=336h'
+              - '--dry-run'
               - '--debug'
               - '--keep=1433157814415941640'
               - '--keep=1460595005391880193'
