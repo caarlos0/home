@@ -20,7 +20,7 @@ spec:
             image: ghcr.io/caarlos0/twitter-cleaner
             imagePullPolicy: IfNotPresent
             envFrom:
-              - secretRef:
+            - secretRef:
                 name: twitter-cleaner
             args:
               - '--max-age=336h'
