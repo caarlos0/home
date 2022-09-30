@@ -1,0 +1,92 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: twitter-cleaner
+  labels:
+    app: twitter-cleaner
+spec:
+  schedule: "0 */6 * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 10
+      template:
+        metadata:
+          labels:
+            app: twitter-cleaner
+        spec:
+          containers:
+          - name: twitter-cleaner
+            image: ghcr.io/caarlos0/twitter-cleaner
+            imagePullPolicy: IfNotPresent
+            env:
+              - name: TWITTER_CONSUMER_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: twitter-cleaner
+                    key: TWITTER_CONSUMER_KEY
+                    optional: false
+              - name: TWITTER_CONSUMER_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: twitter-cleaner
+                    key: TWITTER_CONSUMER_SECRET
+                    optional: false
+              - name: TWITTER_ACCESS_TOKEN
+                valueFrom:
+                  secretKeyRef:
+                    name: twitter-cleaner
+                    key: TWITTER_ACCESS_TOKEN
+                    optional: false
+              - name: TWITTER_ACCESS_TOKEN_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: twitter-cleaner
+                    key: TWITTER_ACCESS_TOKEN_SECRET
+                    optional: false
+            args:
+              - '--max-age=336h'
+              - '--debug'
+              - '--keep=1433157814415941640'
+              - '--keep=1460595005391880193'
+              - '--keep=backup'
+              - '--keep=becker'
+              - '--keep=becker.software'
+              - '--keep=book'
+              - '--keep=caarlos0.dev'
+              - '--keep=carlosbecker.com'
+              - '--keep=carlosbecker.dev'
+              - '--keep=charm'
+              - '--keep=cloud'
+              - '--keep=database'
+              - '--keep=development'
+              - '--keep=dotfiles'
+              - '--keep=engineer'
+              - '--keep=git'
+              - '--keep=github'
+              - '--keep=github.com/caarlos0'
+              - '--keep=goreleaser'
+              - '--keep=k3s'
+              - '--keep=k8s'
+              - '--keep=kubernetes'
+              - '--keep=linux'
+              - '--keep=monitoring'
+              - '--keep=neovim'
+              - '--keep=nfpm'
+              - '--keep=nvim'
+              - '--keep=observability'
+              - '--keep=postgres'
+              - '--keep=program'
+              - '--keep=prometheus'
+              - '--keep=releaser'
+              - '--keep=reliability'
+              - '--keep=rust'
+              - '--keep=software'
+              - '--keep=sql'
+              - '--keep=sre'
+              - '--keep=ssh'
+              - '--keep=tmux'
+              - '--keep=twitch'
+              - '--keep=twitterdev'
+              - '--keep=vim'
+          restartPolicy: OnFailure
