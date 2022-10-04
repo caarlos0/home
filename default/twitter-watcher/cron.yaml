@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: twitter-watcher
+  labels:
+    app: twitter-watcher
+spec:
+  schedule: "0 */6 * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 10
+      template:
+        metadata:
+          labels:
+            app: twitter-watcher
+        spec:
+          containers:
+          - name: twitter-watcher
+            image: ghcr.io/caarlos0/twitter-watcher
+            imagePullPolicy: IfNotPresent
+            envFrom:
+            - secretRef:
+                name: twitter-watcher
+            args:
+              - --github-owner=caarlos0
+              - --github-repo=twitter-watcher
+          restartPolicy: OnFailure
