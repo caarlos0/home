@@ -19,7 +19,7 @@ spec:
         spec:
           containers:
           - name: twitter-watcher
-            image: ghcr.io/caarlos0/twitter-watcher
+            image: caarlos0/twitter-watcher
             imagePullPolicy: IfNotPresent
             envFrom:
             - secretRef:
