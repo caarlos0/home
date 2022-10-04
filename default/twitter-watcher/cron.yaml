@@ -19,7 +19,7 @@ spec:
         spec:
           containers:
           - name: twitter-watcher
-            image: caarlos0/twitter-watcher
+            image: caarlos0/twitter-watcher:d18aa117ee8ef10275b8bbac3db6914b1e6f29d9-arm64
             imagePullPolicy: IfNotPresent
             envFrom:
             - secretRef:
