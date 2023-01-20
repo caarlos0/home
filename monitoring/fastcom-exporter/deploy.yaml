@@ -18,7 +18,7 @@ spec:
       containers:
       - name: fastcom-exporter
         image: ghcr.io/caarlos0/fastcom-exporter:v1.3.3
-        args: ["--bind=:9875"]
+        args: ["--bind=:9875", "--refresh.interval=6h"]
         ports:
         - containerPort: 9875
       readinessProbe:
