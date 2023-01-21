@@ -19,7 +19,10 @@ spec:
           - name: curl
             image: curlimages/curl:7.80.0 # TODO: update
             imagePullPolicy: IfNotPresent
-            args: ["-sf", "https://nosnch.in/cfe0931ff7"]
+            args: ["-sf", "${SNITCH_URL}"]
+            envFrom:
+            - secretRef:
+                name: deadmansnitch
           restartPolicy: OnFailure
 
 

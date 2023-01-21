@@ -18,11 +18,11 @@ spec:
           containers:
           - name: curl
             image: curlimages/curl:7.80.0 # TODO: update
+            imagePullPolicy: IfNotPresent
+            args: ["-f", "${NEXTDNS_URL}"]
             envFrom:
             - secretRef:
                 name: nextdns
-            imagePullPolicy: IfNotPresent
-            args: ["-sf", "${NEXTDNS_URL}"]
           restartPolicy: OnFailure
 
 
