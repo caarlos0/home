@@ -19,7 +19,7 @@ spec:
           - name: curl
             image: curlimages/curl:7.80.0 # TODO: update
             imagePullPolicy: IfNotPresent
-            args: ["-f", "${SNITCH_URL}"]
+            args: ["-f", "$(SNITCH_URL)"]
             env:
             - name: SNITCH_URL
               valueFrom:

@@ -19,7 +19,7 @@ spec:
           - name: curl
             image: curlimages/curl:7.80.0 # TODO: update
             imagePullPolicy: IfNotPresent
-            args: ["-f", "${NEXTDNS_URL}"]
+            args: ["-f", "$(NEXTDNS_URL)"]
             env:
             - name: NEXTDNS_URL
               valueFrom:
