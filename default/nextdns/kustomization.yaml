@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: default
 resources:
   - cron.yaml
+  - secret.yaml
