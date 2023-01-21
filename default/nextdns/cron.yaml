@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nextdns
+  labels:
+    app: nextdns
+spec:
+  schedule: "0/15 * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 10
+      template:
+        metadata:
+          labels:
+            app: nextdns
+        spec:
+          containers:
+          - name: curl
+            image: curlimages/curl:7.80.0 # TODO: update
+            imagePullPolicy: IfNotPresent
+            args: ["-sf", "https://link-ip.nextdns.io/cf7c1e/45cac10863737758"]
+          restartPolicy: OnFailure
+
+
