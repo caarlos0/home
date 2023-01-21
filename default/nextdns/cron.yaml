@@ -20,9 +20,12 @@ spec:
             image: curlimages/curl:7.80.0 # TODO: update
             imagePullPolicy: IfNotPresent
             args: ["-f", "${NEXTDNS_URL}"]
-            envFrom:
-            - secretRef:
-                name: nextdns
+            env:
+            - name: NEXTDNS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: nextdns
+                  key: NEXTDNS_URL
           restartPolicy: OnFailure
 
 
