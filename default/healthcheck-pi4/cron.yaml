@@ -10,12 +10,14 @@ spec:
     spec:
       backoffLimit: 2
       ttlSecondsAfterFinished: 10
-      concurrencyPolicy: forbid
       template:
         metadata:
           labels:
             app: healthchecks-io
         spec:
+          concurrencyPolicy: forbid
+          nodeSelector:
+            kubernetes.io/hostname: pi4
           containers:
           - name: curl
             image: curlimages/curl:7.80.0
