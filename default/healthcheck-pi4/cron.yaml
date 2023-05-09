@@ -5,7 +5,7 @@ metadata:
   labels:
     app: healthchecks-io
 spec:
-  schedule: "0/15 * * * *"
+  schedule: "* * * * *"
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
