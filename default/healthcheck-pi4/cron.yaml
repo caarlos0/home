@@ -6,7 +6,7 @@ metadata:
     app: healthchecks-io
 spec:
   schedule: "0/15 * * * *"
-  concurrencyPolicy: forbid
+  concurrencyPolicy: Forbid
   jobTemplate:
     spec:
       backoffLimit: 2
