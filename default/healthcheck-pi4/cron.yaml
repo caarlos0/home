@@ -6,6 +6,7 @@ metadata:
     app: healthchecks-io
 spec:
   schedule: "0/15 * * * *"
+  concurrencyPolicy: forbid
   jobTemplate:
     spec:
       backoffLimit: 2
@@ -15,7 +16,6 @@ spec:
           labels:
             app: healthchecks-io
         spec:
-          concurrencyPolicy: forbid
           nodeSelector:
             kubernetes.io/hostname: pi4
           containers:
