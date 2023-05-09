@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: healthcheck-pi3
+  labels:
+    app: healthchecks-io
+spec:
+  schedule: "0/15 * * * *"
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 10
+      concurrencyPolicy: forbid
+      template:
+        metadata:
+          labels:
+            app: healthchecks-io
+        spec:
+          nodeSelector:
+            kubernetes.io/hostname: pi3
+          containers:
+          - name: curl
+            image: curlimages/curl:7.80.0
+            imagePullPolicy: IfNotPresent
+            args: ["-f", "$(URL)"]
+            env:
+            - name: URL
+              valueFrom:
+                secretKeyRef:
+                  name: healthcheck-pi3
+                  key: URL
+          restartPolicy: OnFailure
+
+
