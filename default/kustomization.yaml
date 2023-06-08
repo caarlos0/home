@@ -4,5 +4,3 @@ resources:
   - healthcheck-pi3
   - healthcheck-pi4
   - nextdns
-  - twitter-cleaner
-  - twitter-watcher
