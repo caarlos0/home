@@ -29,11 +29,11 @@ spec:
             datasource: Prometheus
       ingress:
         enabled: true
-        hosts: [grafana.homes]
+        hosts: [grafana.homes grafana.vpn]
     prometheus:
       ingress:
         enabled: true
-        hosts: [prometheus.homes]
+        hosts: [prometheus.homes prometheus.vpn]
       prometheusSpec:
         retention: 15d
         resources:

@@ -17,3 +17,13 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
+    - host: speedtest.vpn
+      http:
+        paths:
+          - backend:
+              service:
+                name: openspeedtest
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
