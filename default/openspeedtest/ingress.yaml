@@ -14,7 +14,7 @@ spec:
               service:
                 name: openspeedtest
                 port:
-                  number: 80
+                  number: 3000
             path: /
             pathType: Prefix
     - host: speedtest.vpn
@@ -24,6 +24,6 @@ spec:
               service:
                 name: openspeedtest
                 port:
-                  number: 80
+                  number: 3000
             path: /
             pathType: Prefix
