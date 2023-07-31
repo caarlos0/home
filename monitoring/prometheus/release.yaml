@@ -22,10 +22,11 @@ spec:
       enabled: false
     grafana:
       dashboards:
-        speedtest:
-          gnetId: 14187
-          revision: 4
-          datasource: Prometheus
+        default:
+          speedtest:
+            gnetId: 14187
+            revision: 4
+            datasource: Prometheus
       ingress:
         enabled: true
         hosts: [grafana.homes]
