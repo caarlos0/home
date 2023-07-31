@@ -20,8 +20,8 @@ Nodes are `pi3` and `pi4`, IPs `192.168.68.109` and `192.168.68.110` respectivel
 > sd-card. This shit takes forever to finish.
 
 ```sh
-# export IP=192.168.68.109
-# export IP=192.168.68.110
+# export IP=192.168.1.151
+# export IP=192.168.1.215
 
 # make ssh pi3 and ssh pi4 work
 echo '
@@ -80,8 +80,8 @@ sudo tailscale up -authkey $tskey
 
 ```sh
 curl -sLS https://get.k3sup.dev | sh
-k3sup install --user ubuntu --ip 192.168.68.110 --local-path ~/.kube/config --ssh-key ~/.ssh/id_ed25519
-k3sup join --user ubuntu --ip 192.168.68.109 --server-ip 192.168.68.110 --ssh-key ~/.ssh/id_ed25519
+k3sup install --user ubuntu --ip 192.168.1.151 --local-path ~/.kube/config --ssh-key ~/.ssh/id_ed25519
+k3sup join --user ubuntu --ip 192.168.1.215 --server-ip 192.168.1.151 --ssh-key ~/.ssh/id_ed25519
 
 kubectl config set-context default
 kubectl get nodes -w -owide
