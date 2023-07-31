@@ -6,7 +6,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      version: "35.x"
+      version: "48.x"
       chart: kube-prometheus-stack
       sourceRef:
         kind: HelmRepository
@@ -42,4 +42,3 @@ spec:
           matchLabels: {}
         serviceMonitorSelector:
           matchLabels: {}
-
