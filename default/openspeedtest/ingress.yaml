@@ -14,6 +14,6 @@ spec:
               service:
                 name: openspeedtest
                 port:
-                  number: 3000
+                  number: 80
             path: /
             pathType: Prefix
