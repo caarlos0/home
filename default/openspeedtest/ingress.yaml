@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: openspeedtest
+  namespace: default
+  labels:
+    app: openspeedtest
+spec:
+  rules:
+    - host: speedtest.homes
+      http:
+        paths:
+          - backend:
+              service:
+                name: openspeedtest
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix
