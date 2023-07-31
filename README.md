@@ -12,7 +12,7 @@ I'm re-doing this using flux.
 
 # setting up new cluster
 
-Nodes are `pi3` and `pi4`, IPs `192.168.68.109` and `192.168.68.110` respectively.
+Nodes are `pi3` and `pi4`, IPs `192.168.1.151` and `192.168.1.215` respectively.
 
 ## setup hosts
 
