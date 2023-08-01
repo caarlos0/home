@@ -30,9 +30,9 @@ spec:
     ingress:
       main:
         enabled: true
-      hosts:
-        - homer.homes
-        - homer.vpn
+        hosts:
+          - host: homer.homes
+          - host: homer.vpn
 
     configmap:
       config:
