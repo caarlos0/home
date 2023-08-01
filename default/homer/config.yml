@@ -32,12 +32,10 @@ services:
         type: "Radarr"
         url: "http://darkstar.local:7878/"
         apikey: "c921b6e82b49441ebf21c14faa0892f1"
-        legacyApi: true
       - name: "Sonarr"
         type: "Sonarr"
         url: "http://darkstar.local:8989/"
         apikey: "d011df2dd51347b68387a7d0bf26bef1"
-        legacyApi: true
       - name: Jackett
         url: http://jackett.homes/
       - name: Transmission
