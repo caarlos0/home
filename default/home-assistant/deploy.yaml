@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/v1.14.0/deployment-apps-v1.json
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+  labels:
+    app: home-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: pi4
+      containers:
+        - name: home-assistant
+          image: ghcr.io/home-assistant/home-assistant:stable
+          ports:
+            - containerPort: 8123
+          volumeMounts:
+            - mountPath: /config
+              name: config
+          env:
+            - name: TZ
+              value: America/Sao_Paulo
+      volumes:
+        - name: config
+          hostPath:
+            path: /var/local/home-assistant
+            type: DirectoryOrCreate
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 9117
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9117
+        initialDelaySeconds: 5
+        periodSeconds: 5
