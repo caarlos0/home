@@ -32,7 +32,19 @@ spec:
         enabled: true
         hosts:
           - host: homer.homes
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: homer
+                  port: 8080
           - host: homer.vpn
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: homer
+                  port: 8080
 
     configmap:
       config:
