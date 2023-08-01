@@ -9,10 +9,10 @@ spec:
     spec:
       version: "8.x.x"
       chart: homer
+      interval: 60m
       sourceRef:
         kind: HelmRepository
         name: djjudas21
-        interval: 60m
   install:
     crds: Create
   upgrade:
