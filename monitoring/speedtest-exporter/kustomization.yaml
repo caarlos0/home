@@ -4,4 +4,4 @@ namespace: monitoring
 resources:
   - deploy.yaml
   - svc.yaml
-  # - servicemonitor.yaml
+  - servicemonitor.yaml
