@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://kubernetesjsonschema.dev/v1.14.0/deployment-apps-v1.json
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,11 +15,27 @@ spec:
       labels:
         app: jackett
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: pi4
       containers:
         - name: jackett
           image: lscr.io/linuxserver/jackett:latest
           ports:
             - containerPort: 9117
+          volumeMounts:
+            - mountPath: /config
+              name: config
+            - mountPath: /downloads
+              name: downloads
+      volumes:
+        - name: config
+          hostPath:
+            path: /var/local/jackett/config
+            type: DirectoryOrCreate
+        - name: downloads
+          hostPath:
+            path: /var/local/jackett/downloads
+            type: DirectoryOrCreate
       readinessProbe:
         httpGet:
           path: /
