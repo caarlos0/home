@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jackett
+  labels:
+    app: jackett
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jackett
+  template:
+    metadata:
+      labels:
+        app: jackett
+    spec:
+      containers:
+        - name: jackett
+          image: lscr.io/linuxserver/jackett:latest
+          ports:
+            - containerPort: 9117
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 9117
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 9117
+        initialDelaySeconds: 5
+        periodSeconds: 5

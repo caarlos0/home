@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jackett
+  labels:
+    app: jackett
+spec:
+  rules:
+    - host: jackett.homes
+      http:
+        paths:
+          - backend:
+              service:
+                name: jackett
+                port:
+                  number: 9117
+            path: /
+            pathType: Prefix
+    - host: jackett.vpn
+      http:
+        paths:
+          - backend:
+              service:
+                name: jackett
+                port:
+                  number: 9117
+            path: /
+            pathType: Prefix
