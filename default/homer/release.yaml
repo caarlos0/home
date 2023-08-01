@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homer
+spec:
+  interval: 5m
+  chart:
+    spec:
+      version: "8.x.x"
+      chart: homer
+      sourceRef:
+        kind: HelmRepository
+        name: djjudas21
+        interval: 60m
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
+  # https://github.com/djjudas21/charts/blob/main/charts/homer/values.yaml
+  values:
+    env:
+      TZ: GMT-3
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+
+    ingress:
+      main:
+        enabled: true
+        hosts:
+          - homer.homes
+          - homer.vpn
+
+    configmap:
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist

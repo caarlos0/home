@@ -5,3 +5,4 @@ resources:
   - healthcheck-pi4
   - nextdns
   - openspeedtest
+  - homer

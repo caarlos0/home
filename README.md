@@ -94,4 +94,5 @@ flux create source helm prometheus-community --url https://prometheus-community.
 flux create source helm grafana --url https://grafana.github.io/helm-charts
 flux create source helm influxdata --url https://helm.influxdata.com
 flux create source helm traefik --url https://helm.traefik.io/traefik
+flux create source helm djjudas21 --url https://djjudas21.github.io/charts/
 ```
