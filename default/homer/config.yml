@@ -4,7 +4,7 @@
 
 title: "Becker's"
 subtitle: "Homes"
-logo: "logo.png"
+# logo: "logo.png"
 icon: "fas fa-skull-crossbones" # Optional icon
 
 header: true
@@ -71,6 +71,29 @@ services:
   - name: "Applications"
     icon: "fas fa-cloud"
     items:
+      - name: "Unify"
+        tag: network
+        url: https://192.168.1.1/network/default/dashboard
+      - name: "NextDNS"
+        tag: network
+        url: https://my.nextdns.io/cf7c1e/setup
+
+      - name: "Radarr"
+        type: "Radarr"
+        url: "http://darkstar.local:7878/"
+        apikey: "c921b6e82b49441ebf21c14faa0892f1"
+        legacyApi: true
+        tag: tv
+      - name: "Sonarr"
+        type: "Sonarr"
+        url: "http://darkstar.local:7878/"
+        apikey: "d011df2dd51347b68387a7d0bf26bef1"
+        legacyApi: true
+        tag: tv
+
+      - name: "Protect"
+        tag: home
+        url: https://192.168.1.1/protect/dashboard
       - name: "Awesome app"
         logo: "assets/tools/sample.png"
         subtitle: "Bookmark example"
@@ -83,3 +106,8 @@ services:
         subtitle: "Another application"
         tag: "app"
         url: "#"
+
+      - name: "Prometheus"
+        type: Prometheus
+        logo: "assets/tools/sample.png"
+        url: "http://prometheus.local/"
