@@ -39,4 +39,4 @@ spec:
         enabled: true
         data:
           config.yml: |
-            externalConfig: https://raw.githubusercontent.com/bastienwirtz/homer/main/public/assets/config.yml.dist
+            externalConfig: https://raw.githubusercontent.com/caarlos0/home/main/default/homer/config.yml
