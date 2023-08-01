@@ -68,7 +68,7 @@ links:
 # First level array represent a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
-  - name: "Applications"
+  - name: "Networking"
     icon: "fas fa-cloud"
     items:
       - name: "Unify"
@@ -78,36 +78,37 @@ services:
         tag: network
         url: https://my.nextdns.io/cf7c1e/setup
 
+  - name: "TV"
+    icon: "fas fa-tv"
+    items:
       - name: "Radarr"
         type: "Radarr"
         url: "http://darkstar.local:7878/"
         apikey: "c921b6e82b49441ebf21c14faa0892f1"
         legacyApi: true
-        tag: tv
       - name: "Sonarr"
         type: "Sonarr"
         url: "http://darkstar.local:7878/"
         apikey: "d011df2dd51347b68387a7d0bf26bef1"
         legacyApi: true
-        tag: tv
+      - name: "Plex"
+        url: http://darkstar.local:32400
+      - name: Transmission
+        url: http://darkstar.local:9091/transmission/
 
+  - name: "Security"
+    icon: "fas fa-video"
+    items:
       - name: "Protect"
-        tag: home
         url: https://192.168.1.1/protect/dashboard
-      - name: "Awesome app"
-        logo: "assets/tools/sample.png"
-        subtitle: "Bookmark example"
-        tag: "app"
-        keywords: "self hosted reddit"
-        url: "https://www.reddit.com/r/selfhosted/"
-        target: "_blank" # optional html a tag target attribute
-      - name: "Another one"
-        logo: "assets/tools/sample2.png"
-        subtitle: "Another application"
-        tag: "app"
-        url: "#"
+      - name: "Homebridge"
+        url: http://pi4.local:8581/
 
+  - name: "Monitoring"
+    icon: "fas fa-chart-simple"
+    items:
       - name: "Prometheus"
         type: Prometheus
-        logo: "assets/tools/sample.png"
-        url: "http://prometheus.local/"
+        url: "http://prometheus.homes/"
+      - name: "Grafana"
+        url: "http://grafana.homes/"
