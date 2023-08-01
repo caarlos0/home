@@ -27,6 +27,13 @@ spec:
               name: config
             - mountPath: /downloads
               name: downloads
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: America/Sao_Paulo
       volumes:
         - name: config
           hostPath:

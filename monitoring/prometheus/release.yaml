@@ -29,16 +29,20 @@ spec:
             datasource: Prometheus
       ingress:
         enabled: true
-        hosts: [grafana.homes grafana.vpn]
+        hosts:
+          - grafana.homes
+          - grafana.vpn
     prometheus:
       ingress:
         enabled: true
-        hosts: [prometheus.homes prometheus.vpn]
+        hosts:
+          - prometheus.homes
+          - prometheus.vpn
       prometheusSpec:
         retention: 15d
         resources:
           limits:
-            memory: 1.5Gi
+            memory: 2Gi
           requests:
             cpu: 200m
             memory: 200Mi
