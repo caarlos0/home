@@ -38,8 +38,8 @@ services:
         url: "http://darkstar.local:8989/"
         apikey: "d011df2dd51347b68387a7d0bf26bef1"
         legacyApi: true
-      - name: Jacket
-        url: http://jackett.homes:9091/
+      - name: Jackett
+        url: http://jackett.homes/
       - name: Transmission
         url: http://darkstar.local:9091/transmission/
 
