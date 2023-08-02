@@ -5,7 +5,7 @@ metadata:
   labels:
     app: healthchecks-io
 spec:
-  schedule: "* * * * *"
+  schedule: "*/5 * * * *"
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
@@ -19,16 +19,14 @@ spec:
           nodeSelector:
             kubernetes.io/hostname: pi3
           containers:
-          - name: curl
-            image: curlimages/curl:7.80.0
-            imagePullPolicy: IfNotPresent
-            args: ["-f", "$(URL)"]
-            env:
-            - name: URL
-              valueFrom:
-                secretKeyRef:
-                  name: healthcheck-pi3
-                  key: URL
+            - name: curl
+              image: curlimages/curl:7.80.0
+              imagePullPolicy: IfNotPresent
+              args: ["-f", "$(URL)"]
+              env:
+                - name: URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: healthcheck-pi3
+                      key: URL
           restartPolicy: OnFailure
-
-

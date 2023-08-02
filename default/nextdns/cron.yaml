@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nextdns
 spec:
-  schedule: "0/15 * * * *"
+  schedule: "0 * * * *"
   jobTemplate:
     spec:
       backoffLimit: 2
@@ -16,16 +16,14 @@ spec:
             app: nextdns
         spec:
           containers:
-          - name: curl
-            image: curlimages/curl:7.80.0 # TODO: update
-            imagePullPolicy: IfNotPresent
-            args: ["-f", "$(NEXTDNS_URL)"]
-            env:
-            - name: NEXTDNS_URL
-              valueFrom:
-                secretKeyRef:
-                  name: nextdns
-                  key: NEXTDNS_URL
+            - name: curl
+              image: curlimages/curl:7.80.0
+              imagePullPolicy: IfNotPresent
+              args: ["-f", "$(NEXTDNS_URL)"]
+              env:
+                - name: NEXTDNS_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: nextdns
+                      key: NEXTDNS_URL
           restartPolicy: OnFailure
-
-
