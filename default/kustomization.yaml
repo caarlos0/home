@@ -7,4 +7,4 @@ resources:
   - openspeedtest
   - homer
   - jackett
-  - home-assistant
+  # - home-assistant
